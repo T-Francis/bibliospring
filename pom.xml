@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Group Id (ex : com.yourname) -->
+	<groupId>fr.aliart</groupId>
+	<!-- Main package name (ex : appname ) -->
+	<artifactId>bibliospring</artifactId>
+	<!-- App Version -->
+	<version>0.1</version>
+	<!-- App packagin -->
+	<packaging>war</packaging>
+
+	<!-- App Name & Description -->
+	<name>bibliospring</name>
+	<description>Demo project for Spring Boot</description>
+
+	<!-- SPRING BOOT STARTER PARENT REPO -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.8.RELEASE</version>
+		<relativePath></relativePath>
+	</parent>
+
+	<!-- POM & PROJECT PROPERTIES -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- java version -->
+		<java.version>1.8</java.version>
+		<!-- jtwig version -->
+		<jtwig.version>5.86.1.RELEASE</jtwig.version>		
+	</properties>
+
+	<!-- DEPENDENCIES -->
+	<dependencies>
+		<!-- Spring boot devtools -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<!-- Spring boot jpa starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- Spring boot web starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- Spring Boot test starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- jtwig spring boot starter -->
+		<dependency>
+			<groupId>org.jtwig</groupId>
+			<artifactId>jtwig-spring-boot-starter</artifactId>
+			<version>${jtwig.version}</version>
+		</dependency>
+		<!-- COMMON LANG V3 -->
+		<!-- fix for : Error creating bean with name 'jtwigViewResolver' defined 
+			in class path resource [org/jtwig/spring/boot/JtwigAutoConfiguration$JtwigViewResolverConfiguration.class]: 
+			Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: 
+			org/apache/commons/lang3/builder/RecursiveToStringStyle -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
+		</dependency>
+		<!-- MySql connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- SSH WAGON FOR REMOTE DEPLOYEMENT https://mvnrepository.com/artifact/org.apache.maven.wagon/wagon-ssh -->
+		<dependency>
+			<groupId>org.apache.maven.wagon</groupId>
+			<artifactId>wagon-ssh</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+	</dependencies>
+
+	<!-- DISTRUBUTION SETTINGS -->
+	<distributionManagement>
+		<repository>
+			<id>localvps</id>
+			<uniqueVersion>false</uniqueVersion>
+			<name>bibliospring Repository</name>
+	 			<url>scp://10.111.61.203/opt/tomcat/webapps/bibliospringRepository</url>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
+
+	<!-- BUILD -->
+	<build>
+	<finalName>${project.artifactId}</finalName>
+	    <extensions>
+	      <extension>
+	        <groupId>org.apache.maven.wagon</groupId>
+	        <artifactId>wagon-ssh</artifactId>
+	        <version>2.8</version>
+	      </extension>
+	    </extensions>
+		<plugins>
+			<!-- SPRING BOOT PLUGIN -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<!-- TOMCAT MAVEN PLUGIN -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat8-maven-plugin</artifactId>
+				<version>3.0-r1756463</version>
+				 <configuration>
+                    <url>http://10.111.61.203:8080/manager/text</url>
+                    <server>localvps</server>
+                    <path>/{project.artifactId}</path>
+                 </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>wagon-maven-plugin</artifactId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>localvps</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>upload-single</goal>
+						</goals>
+ 						<configuration>
+					    	<serverId>localvps</serverId>
+					     	<fromFile>${project.build.directory}/${project.artifactId}.${project.packaging}</fromFile>
+					     	<url>scp://10.111.61.203/opt/tomcat/webapps</url>
+					    </configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

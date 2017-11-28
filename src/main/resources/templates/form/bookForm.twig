@@ -1,0 +1,47 @@
+<!-- Modal Structure -->
+<div id="bookForm" class="modal">
+	<div class="modal-content">
+	<form class="col s12">
+  		<h4>{{ type }}</h4>
+        <div class="row">
+        	<div class="row">
+        	        	
+                <div class="input-field col s4">
+                  <input id="isbn" type="text" class="validate">
+                  <label for="isbn" class="active" data-error="wrong" data-success="right">Isbn</label>
+                </div>   
+                             
+                <div class="input-field col s4">
+                  <input id="title" type="text" class="validate">
+                  <label for="title" class="active" data-error="wrong" data-success="right">Title</label>
+                </div>  
+
+                <div class="input-field col s4">
+                  <input id="releaseDate" type="text" class="validate">
+                  <label for="releaseDate" class="active" data-error="wrong" data-success="right">Release date</label>
+                </div>
+                             
+                <div class="input-field col s4">
+                  <input id="authorList" class="typeahead autocomplete" type="text">
+                  <label for="authorList" class="active" data-error="wrong" data-success="right">Author(s)</label>
+                </div>
+
+                <div class="input-field col s4">
+                  <input id="subtitle" type="text" class="validate">
+                  <label for="subtitle" class="active" data-error="wrong" data-success="right">Subtitle</label>
+                </div>   
+                             
+                <div class="input-field col s4">
+                  <input id="categorieComplete" class="typeahead autocomplete" type="text">
+                  <label for="categorieComplete" class="active" data-error="wrong" data-success="right">Categorie</label>
+                </div>
+                                
+            </div>                
+        </div>
+	</div>
+	<div class="modal-footer">
+  		<button class="waves-effect waves-light btn"><i class="material-icons right">send</i>submit</button>
+  		<button class="waves-effect waves-light btn"><i class="material-icons right">cancel</i>cancel</button>
+	</div>
+	</form>
+</div>

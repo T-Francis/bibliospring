@@ -1,0 +1,26 @@
+{% extends "/templates/base.twig" %}
+
+{% block requiredCss %}{% endblock %}
+
+{% block mainContent %}
+
+	<h1>Copies</h1>
+	
+	<table id="copiesTable" class="display">
+      
+       <!-- Header Table -->
+       <thead>
+            <tr>
+                <th>Copy N°</th>
+                <th>Isbn</th>
+				<th>Title</th>
+                <th>Disponibility</th>
+            </tr>
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% block requiredScript %}
+	<script src="/bibliospring/js/copies.js"></script>
+{% endblock %}

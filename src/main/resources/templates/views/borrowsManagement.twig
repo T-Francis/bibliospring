@@ -1,0 +1,27 @@
+{% extends "/templates/base.twig" %}
+
+{% block requiredCss %}{% endblock %}
+
+{% block mainContent %}
+
+	<h1>Borrows</h1>
+	
+	<table id="borrowsTable" class="display">
+      
+       <!-- Header Table -->
+       <thead>
+            <tr>
+				<th>Borrowed on</th>
+                <th>Returned on</th>
+                <th>Served by</th>
+                <th>Book Title</th>
+                <th>Borrowers</th>
+            </tr>
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% block requiredScript %}
+	<script src="/bibliospring/js/borrows.js"></script>
+{% endblock %}

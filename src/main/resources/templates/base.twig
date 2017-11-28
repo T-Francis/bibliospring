@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+	
+	<title>BiblioSpring</title>
+	
+	<!-- CDN Materialize Google Font+Icon  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Datatables CSS -->
+	<link rel="stylesheet"	href="/bibliospring/js/datatables/datatables.min.css">
+	<!-- Ionicon Fonts -->
+	<link rel="stylesheet"	href="/bibliospring/font/ionicons-2.0.1/css/ionicons.min.css">
+	<!-- Materialize CSS -->
+	<link rel="stylesheet"	href="/bibliospring/css/materialize-0.100.2/css/materialize.min.css">
+	<!-- Core CSS -->
+	<link rel="stylesheet"	href="/bibliospring/css/core.css">
+	
+	<!-- required module CSS -->
+	{% block requiredCss %}
+	{% endblock %}
+	
+</head>
+
+<body>
+
+	<!-- nav -->
+	<div id="mainDesktopNavbar">
+		{% include "/templates/nav/nav.twig" ignore missing %}
+	</div>
+
+	<!-- main content container -->
+	<div class="container">
+    	{% block mainContent %}    	
+    	{% endblock %}
+	</div>
+	
+	<!-- form modal include -->
+	{% if defined(form) %}
+  	    {% include concat( "/templates/form/",form,"Form.twig" ) ignore missing %}
+  	  
+    	<!-- Modal Trigger -->
+    	<div class="center-align">
+	    	<a class="waves-effect waves-light btn modal-trigger" href={{ concat( "#",form,"Form" ) }}>Ajouter</a>	
+    	</div>
+    {% endif %}
+    
+    <!-- footer -->
+	<footer class="">
+		<div class="footer-copyright">
+            <div class="container">
+				<p class="center-align">done with a bit of java EE, much more <i class="icon ion-coffee"></i> and a lot of <i class="icon ion-heart"></i></p>
+            </div>
+        </div>
+	</footer>
+	
+	<!-- Scripts -->
+	<script src="/bibliospring/js/jquery-3.2.1/jquery.min.js"></script>
+	<script src="/bibliospring/js/datatables/datatables.min.js"></script>
+	<script src="/bibliospring/css/materialize-0.100.2/js/materialize.min.js"></script>
+	<script src="/bibliospring/js/typeahead-0.11.1/typeahead.js"></script>
+	<script src="/bibliospring/js/core.js"></script>
+	
+	<!-- required module JS -->
+	{% block requiredScript %}
+	{% endblock %}
+	
+</body>
+
+</html>

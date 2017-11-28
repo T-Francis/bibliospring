@@ -1,0 +1,52 @@
+<!-- Modal Structure -->
+<div id="personsForm" class="modal">
+	<div class="modal-content">
+	<form class="col s12">
+  		<h4>{{ type }}</h4>
+        <div class="row">
+        	<div class="row">
+                <div class="input-field col s4">
+                  <input id="last_name" type="text" class="validate">
+                  <label for="last_name" data-error="wrong" data-success="right">Last Name</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="first_name" type="text" class="validate">
+                  <label for="first_name" data-error="wrong" data-success="right">First Name</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="birthdate" type="text" class="validate">
+                  <label for="birthdate" data-error="wrong" data-success="right">Birthdate</label>
+                </div>
+            </div>                
+        </div>
+        <div class="row">
+            {% if type == "subscriber" %}
+            <div class="row">
+                <div class="input-field col s6">
+                  <input id="id_subscribers" type="text" class="validate">
+                  <label for="id_subscribers" data-error="wrong" data-success="right">Subscribers N&#176;</label>
+                </div>
+            </div>   
+            {% elseif type == "author" %}
+            <div class="row">
+                <div class="input-field col s6">
+                  <input id="author_name" type="text" class="validate">
+                  <label for="author_name" data-error="wrong" data-success="right">Author name</label>
+                </div>
+            </div>  
+            {% elseif type == "biblio user" %}
+            <div class="row">
+                <div class="input-field col s6">
+                  <input id="email" type="email" class="validate">
+                  <label for="email" data-error="wrong" data-success="right">email</label>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+	</div>
+	<div class="modal-footer">
+  		<button class="waves-effect waves-light btn"><i class="material-icons right">send</i>submit</button>
+  		<button class="waves-effect waves-light btn"><i class="material-icons right">cancel</i>cancel</button>
+	</div>
+	</form>
+</div>

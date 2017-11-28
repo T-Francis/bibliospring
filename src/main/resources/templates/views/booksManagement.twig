@@ -1,0 +1,29 @@
+{% extends "/templates/base.twig" %}
+
+{% block requiredCss %}{% endblock %}
+
+{% block mainContent %}
+
+	<h1>Books</h1>
+	
+	<table id="booksTable" class="display">
+      
+       <!-- Header Table -->
+       <thead>
+            <tr>
+                <th>Isbn</th>
+    			<th>Title</th>
+                <th>Subtitle</th>
+                <th>Release Date</th>
+                <th>Author</th>
+                <th>Copy</th>
+            </tr>
+		</thead>
+    </table>
+
+
+{% endblock %}
+
+{% block requiredScript %}
+	<script src="/bibliospring/js/books.js"></script>
+{% endblock %}

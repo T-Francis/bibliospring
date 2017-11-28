@@ -1,0 +1,26 @@
+{% extends "/templates/base.twig" %}
+
+{% block requiredCss %}{% endblock %}
+
+{% block mainContent %}
+
+	<h1>Categories</h1>
+	
+	<table id="categoriesTable" class="display">
+      
+       <!-- Header Table -->
+       <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% block requiredScript %}
+	<script src="/bibliospring/js/categories.js"></script>
+{% endblock %}

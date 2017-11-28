@@ -1,0 +1,29 @@
+{% extends "/templates/base.twig" %}
+
+{% block mainContent %}
+
+<div class="">
+      <br><br>
+      <h1 class="header center blue-text">Library manager</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">A simple library manager project</h5>        
+      </div>
+      <div class="row center">
+        <a id="getStartedButton" onclick="startDemo()" class="btn-large waves-effect waves-light orange">Get Started</a>
+      </div>
+      <br><br>
+</div>
+
+  <!-- Tap Target Structure -->
+  <div class="tap-target" data-activates="subscriberNavItem">
+    <div class="tap-target-content">
+      <h5 id="tapTitle" ></h5>
+      <p id="tapText" >A bunch of text</p>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block requiredScript %}
+	<script src="/bibliospring/js/landing.js"></script>
+{% endblock %}

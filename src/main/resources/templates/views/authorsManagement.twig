@@ -1,0 +1,25 @@
+{% extends "/templates/base.twig" %}
+
+{% block requiredCss %}{% endblock %}
+
+{% block mainContent %}
+
+	<h1>Authors</h1>
+	
+	<table id="authorsTable" class="display">
+      
+       <!-- Header Table -->
+       <thead>
+            <tr>
+				<th>Name</th>
+                <th>Last Name</th>
+                <th>Author Name</th>
+            </tr>
+        </thead>
+    </table>
+
+{% endblock %}
+
+{% block requiredScript %}
+	<script src="/bibliospring/js/authors.js"></script>
+{% endblock %}
