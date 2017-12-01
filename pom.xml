@@ -8,7 +8,7 @@
 	<!-- Main package name (ex : appname ) -->
 	<artifactId>bibliospring</artifactId>
 	<!-- App Version -->
-	<version>0.1</version>
+	<version>0.1.1</version>
 	<!-- App packagin -->
 	<packaging>war</packaging>
 
@@ -96,10 +96,12 @@
 	<!-- DISTRUBUTION SETTINGS -->
 	<distributionManagement>
 		<repository>
-			<id>localvps</id>
-			<uniqueVersion>false</uniqueVersion>
+			<id>francisCredentials</id>
+			<uniqueVersion>true</uniqueVersion>
 			<name>bibliospring Repository</name>
-	 			<url>scp://10.111.61.203/opt/tomcat/webapps/bibliospringRepository</url>
+				<!-- On original configutation, the SCP protocol is used and result sith some dowloading issue on deploy, change it on sftp fix it -->
+				<!-- <url>scp://10.111.61.203/home/francis/dev/bibliospring</url> -->
+	 			<url>sftp://10.111.61.203/home/francis/dev/bibliospring</url>
 			<layout>default</layout>
 		</repository>
 	</distributionManagement>
@@ -120,32 +122,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- TOMCAT MAVEN PLUGIN -->
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat8-maven-plugin</artifactId>
-				<version>3.0-r1756463</version>
-				 <configuration>
-                    <url>http://10.111.61.203:8080/manager/text</url>
-                    <server>localvps</server>
-                    <path>/{project.artifactId}</path>
-                 </configuration>
-			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>wagon-maven-plugin</artifactId>
 				<version>1.0</version>
 				<executions>
 					<execution>
-						<id>localvps</id>
 						<phase>deploy</phase>
 						<goals>
 							<goal>upload-single</goal>
 						</goals>
  						<configuration>
-					    	<serverId>localvps</serverId>
+					    	<serverId>francisCredentials</serverId>
 					     	<fromFile>${project.build.directory}/${project.artifactId}.${project.packaging}</fromFile>
-					     	<url>scp://10.111.61.203/opt/tomcat/webapps</url>
+					     	<!-- On original configutation, the SCP protocol is used and result sith some dowloading issue on deploy, change it on sftp fix it -->
+					     	<!-- <url>scp://10.111.61.203/opt/tomcat/webapps</url> -->
+					     	<url>sftp://10.111.61.203/opt/tomcat/webapps</url>
 					    </configuration>
 					</execution>
 				</executions>
