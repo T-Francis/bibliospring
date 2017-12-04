@@ -84,37 +84,11 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- SSH WAGON FOR REMOTE DEPLOYEMENT https://mvnrepository.com/artifact/org.apache.maven.wagon/wagon-ssh -->
-<!-- 		<dependency>
-			<groupId>org.apache.maven.wagon</groupId>
-			<artifactId>wagon-ssh</artifactId>
-			<version>3.0.0</version>
-		</dependency> -->
 	</dependencies>
-
-	<!-- DISTRUBUTION SETTINGS  WAGON SSH DEPLOY -->
-<!-- 	<distributionManagement>
-		<repository>
-			<id>francisCredentials</id>
-			<uniqueVersion>true</uniqueVersion>
-			<name>bibliospring Repository</name>
-				On original configutation, the SCP protocol is used and result sith some dowloading issue on deploy, change it on sftp fix it
-				<url>scp://10.111.61.203/home/francis/dev/bibliospring</url>
-	 			<url>sftp://10.111.61.203/home/francis/dev/bibliospring</url>
-			<layout>default</layout>
-		</repository>
-	</distributionManagement> -->
-
 	<!-- BUILD -->
 	<build>
 	<finalName>${project.artifactId}</finalName>
 	    <extensions>
-	      <extension>
-	        <groupId>org.apache.maven.wagon</groupId>
-	        <artifactId>wagon-ssh</artifactId>
-	        <version>2.8</version>
-	      </extension>
 	    </extensions>
 		<plugins>
 			<!-- SPRING BOOT PLUGIN -->
@@ -134,27 +108,6 @@
 					<update>true</update>
 				</configuration>
 			</plugin>
-				<!-- WAGON SSH DEPLOY -->
-<!-- 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0</version>
-				<executions>
-					<execution>
-						<phase>deploy</phase>
-						<goals>
-							<goal>upload-single</goal>
-						</goals>
- 						<configuration>
-					    	<serverId>francisCredentials</serverId>
-					     	<fromFile>${project.build.directory}/${project.artifactId}.${project.packaging}</fromFile>
-					     	On original configutation, the SCP protocol is used and result sith some dowloading issue on deploy, change it on sftp fix it
-					     	<url>scp://10.111.61.203/opt/tomcat/webapps</url>
-					     	<url>sftp://10.111.61.203/opt/tomcat/webapps</url>
-					    </configuration>
-					</execution>
-				</executions>
-			</plugin> -->
 		</plugins>
 	</build>
 </project>
