@@ -1,14 +1,18 @@
-# BIBLIOSPRING 
+# ARCHIVED
 
-## Run it:
+Course project, no reason to keep it active
 
-## Key directories
+## BIBLIOSPRING 
+
+### Run it:
+
+### Key directories
 
 * `src`: Application code
 
-## Key files
+### Key files
 
 * `src/main/resources/application.properties.example`: configuration files example
 
-## TODO
+### TODO
 => a better readme ;)
